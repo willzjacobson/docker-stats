@@ -54,7 +54,6 @@ function setCron(logger) {
 
 	  	reportRedisContainerStats(command)
 		.then(parsedStats => {
-			console.log(parsedStats);
 
 			const memPercentUsage = Number(parsedStats.memPercentUsage.slice(0,-1));
 			var method;
