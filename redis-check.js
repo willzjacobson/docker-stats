@@ -1,5 +1,5 @@
 const cp = require('child_process');
-const command = 'docker stats --no-stream=true a74a9df3bc96';
+const command = 'docker stats --no-stream=true redis';
 
 
 function getRawStats() {
@@ -21,25 +21,23 @@ function getRawStats() {
 
 
 function parseStats(stats) {
+	console.log(stats);
 	// convert to useful array
 	var split = stats.split('  ');
 	split = split.map(ind => ind.replace(/ /g, '')).filter(ind => ind.length);
 
 	// set a few variables to optimize
 	const length = split.length;
-	const mem = split[length-5];
-	const net = split[length-3];
-	const block = split[length-2];
+	const mem = split[length-3];
+	const netIO = split[length-1];
 
 	return {
-		cpuPercentUsage: split[length-6],
+		memPercentUsage: Number(split[length-2].slice(0,-1)),
+		cpuPercentUsage: Number(split[length-4].slice(0,-1)),
 		memUsage: mem.split('/')[0],
 		memLimit: mem.split('/')[1],
-		memPercentUsage: split[length-4],
 		netInput: net.split('/')[0],
-		netOutput: net.split('/')[1],
-		blockInput: block.split('/')[0],
-		blockOutput: block.split('/')[1]
+		netOutput: net.split('/')[1]
 	};
 }
 
