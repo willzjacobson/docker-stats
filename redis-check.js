@@ -21,7 +21,6 @@ function getRawStats() {
 
 
 function parseStats(stats) {
-	console.log(stats);
 	// convert to useful array
 	var split = stats.split('  ');
 	split = split.map(ind => ind.replace(/ /g, '')).filter(ind => ind.length);
@@ -31,7 +30,7 @@ function parseStats(stats) {
 	const mem = split[length-3];
 	const netIO = split[length-1];
 
-	const la = {
+	return {
 		memPercentUsage: Number(split[length-2].slice(0,-1)),
 		cpuPercentUsage: Number(split[length-4].slice(0,-1)),
 		memUsage: mem.split('/')[0],
@@ -39,8 +38,6 @@ function parseStats(stats) {
 		netInput: netIO.split('/')[0],
 		netOutput: netIO.split('/')[1]
 	};
-	console.log(la);
-	return la;
 }
 
 
@@ -57,6 +54,7 @@ function setCron(logger) {
 
 	  	reportRedisContainerStats(command)
 		.then(parsedStats => {
+			console.log(parsedStats);
 
 			const memPercentUsage = Number(parsedStats.memPercentUsage.slice(0,-1));
 			var method;
