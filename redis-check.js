@@ -55,9 +55,7 @@ function setCron(logger) {
 	  	reportRedisContainerStats(command)
 		.then(parsedStats => {
 
-			const memPercentUsage = Number(parsedStats.memPercentUsage.slice(0,-1));
 			var method;
-
 			if (memPercentUsage < 50) method = 'info';
 			else if (memPercentUsage < 80) method = 'warn';
 			else method = 'error';
