@@ -36,8 +36,8 @@ function parseStats(stats) {
 		cpuPercentUsage: Number(split[length-4].slice(0,-1)),
 		memUsage: mem.split('/')[0],
 		memLimit: mem.split('/')[1],
-		netInput: net.split('/')[0],
-		netOutput: net.split('/')[1]
+		netInput: netIO.split('/')[0],
+		netOutput: netIO.split('/')[1]
 	};
 }
 
