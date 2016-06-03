@@ -36,7 +36,7 @@ function parseStats(stats) {
 		memUsage: mem.split('/')[0],
 		memLimit: mem.split('/')[1],
 		netInput: netIO.split('/')[0],
-		netOutput: netIO.split('/')[1]
+		netOutput: netIO.split('/')[1].slice(0,-2)
 	};
 }
 
