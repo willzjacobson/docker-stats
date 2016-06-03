@@ -31,7 +31,7 @@ function parseStats(stats) {
 	const mem = split[length-3];
 	const netIO = split[length-1];
 
-	return {
+	const la = {
 		memPercentUsage: Number(split[length-2].slice(0,-1)),
 		cpuPercentUsage: Number(split[length-4].slice(0,-1)),
 		memUsage: mem.split('/')[0],
@@ -39,6 +39,8 @@ function parseStats(stats) {
 		netInput: netIO.split('/')[0],
 		netOutput: netIO.split('/')[1]
 	};
+	console.log(la);
+	return la;
 }
 
 
