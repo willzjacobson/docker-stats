@@ -59,7 +59,6 @@ function setCron(logger) {
 			if (parsedStats.memPercentUsage < 50) method = 'info';
 			else if (parsedStats.memPercentUsage < 80) method = 'warn';
 			else method = 'error';
-			console.log('method', method);
 
 			logger[method]('Redis container stats', JSON.stringify(parsedStats));
 		});
